@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+
+
+
+</head>
+
+<body>
+
+    <div id="firebaseui-auth-container"></div>
+    <script>
+        const firebaseConfig = {
+            apiKey: "",
+            authDomain: "chat-app-test-5ac84.firebaseapp.com",
+            projectId: "chat-app-test-5ac84",
+            storageBucket: "chat-app-test-5ac84.appspot.com",
+            messagingSenderId: "290115718839",
+            appId: "1:290115718839:web:8dfdcfeed75ff10419c732"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const uiConfig = {
+            callbacks: {
+                signInSuccessWithAuthResult: function () {
+                    console.log("ログイン成功")
+                    return true;
+
+                },
+            },
+            //index.htmlが遷移先のURLです。
+            signInSuccessUrl: 'index.html',
+            signInOptions: [
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            ],
+        };
+
+        let ui = new firebaseui.auth.AuthUI(firebase.auth());
+        ui.start('#firebaseui-auth-container', uiConfig);
+
+    </script>
+</body>
+
+</html>
